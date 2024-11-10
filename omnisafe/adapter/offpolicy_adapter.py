@@ -25,6 +25,7 @@ from omnisafe.common.buffer import VectorOffPolicyBuffer
 from omnisafe.common.logger import Logger
 from omnisafe.models.actor_critic.constraint_actor_q_critic import ConstraintActorQCritic
 from omnisafe.utils.config import Config
+from main_omnisafe import safe_module, my_begin_projection, my_if_projection
 
 
 class OffPolicyAdapter(OnlineAdapter):
