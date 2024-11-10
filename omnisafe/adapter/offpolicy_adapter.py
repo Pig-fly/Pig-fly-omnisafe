@@ -63,6 +63,10 @@ class OffPolicyAdapter(OnlineAdapter):
         self._current_obs, _ = self.reset()
         self._max_ep_len: int = 1000
         self._reset_log()
+        self.my_num_step = 0
+        self.my_begin_projection = my_begin_projection
+        self.my_if_projection = my_if_projection
+        self.SafeCorrection_Module = safe_module
 
     def eval_policy(  # pylint: disable=too-many-locals
         self,
