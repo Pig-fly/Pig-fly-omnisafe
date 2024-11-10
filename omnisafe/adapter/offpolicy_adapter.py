@@ -132,6 +132,11 @@ class OffPolicyAdapter(OnlineAdapter):
                 act = agent.step(self._current_obs, deterministic=False)
             next_obs, reward, cost, terminated, truncated, info = self.step(act)
 
+            # 是否启用安全层，数据收集与测试安全
+            self.my_num_step += 1
+            if self.my_if_projection and self.my_num_step > self.my_begin_projection:
+                act = self.SafeCorrection_Module.safety_correction(state=self._current_obs, action=act)
+
             self._log_value(reward=reward, cost=cost, info=info)
             real_next_obs = next_obs.clone()
             for idx, done in enumerate(torch.logical_or(terminated, truncated)):
